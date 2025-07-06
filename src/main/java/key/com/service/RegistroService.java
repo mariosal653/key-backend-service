@@ -1,5 +1,10 @@
 package key.com.service;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.WriteResult;
+import com.google.firebase.cloud.FirestoreClient;
 import key.com.dto.AlumnoDto;
 import key.com.dto.MateriaDto;
 import key.com.dto.ProfesorDto;
@@ -13,7 +18,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +49,19 @@ public class RegistroService {
         alumno.setTelefono(dto.getTelefono());
         alumno.setFechaIngreso(LocalDate.now());
         alumnoRepository.save(alumno);
+
+        Firestore firestore = FirestoreClient.getFirestore();
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("nombres", dto.getNombres());
+        data.put("apellidos", dto.getApellidos());
+        data.put("email", dto.getEmail());
+        data.put("direccion", dto.getDireccion());
+        data.put("telefono", dto.getTelefono());
+        data.put("fechaIngreso", LocalDate.now().toString());
+
+        DocumentReference docRef = firestore.collection("alumnos").document(alumno.getId().toString());
+        ApiFuture<WriteResult> result = docRef.set(data);
     }
 
     public List<ProfesorDto> listarProfesores() {

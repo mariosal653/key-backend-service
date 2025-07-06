@@ -15,8 +15,14 @@ public class FirebaseConfig {
 
     @PostConstruct
     public void init() throws IOException {
-        FileInputStream serviceAccount =
-                new FileInputStream("src/main/resources/firebase-service-account.json");
+        String firebasePath = System.getenv("FIREBASE_CONFIG_PATH");
+
+        if (firebasePath == null || firebasePath.isEmpty()) {
+            throw new RuntimeException("FIREBASE_CONFIG_PATH no está definido.");
+        }
+
+        FileInputStream serviceAccount = new FileInputStream(firebasePath);
+
 
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
