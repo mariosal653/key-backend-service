@@ -1,0 +1,384 @@
+{
+  "info": {
+    "_postman_id": "bfe5e2d6-d4b4-4b8c-82f1-abcde1234567",
+    "name": "Academico Backend - Firebase JWT",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "AUTH - Obtener idToken desde Firebase",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"alumno@demo.com\",\n  \"password\": \"123456\",\n  \"returnSecureToken\": true\n}"
+        },
+        "url": {
+          "raw": "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=TU_API_KEY",
+          "protocol": "https",
+          "host": [
+            "identitytoolkit",
+            "googleapis",
+            "com"
+          ],
+          "path": [
+            "v1",
+            "accounts:signInWithPassword"
+          ],
+          "query": [
+            {
+              "key": "key",
+              "value": "AIzaSyA4KmKdTbnrrl_tt4z-T0MDGps-wV4neoU"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "ALUMNO - Ver Notas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/alumno/notas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "alumno",
+            "notas"
+          ]
+        }
+      }
+    },
+    {
+      "name": "ALUMNO - Obtener Perfil",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/alumno/perfil",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "alumno",
+            "perfil"
+          ]
+        }
+      }
+    },
+    {
+      "name": "ALUMNO - Actualizar Perfil",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/alumno/perfil",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "alumno",
+            "perfil"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombres\": \"Carlos\",\n  \"apellidos\": \"Pe\\u00f1ate\",\n  \"direccion\": \"Nueva direcci\\u00f3n\",\n  \"telefono\": \"7890-1234\"\n}"
+        }
+      }
+    },
+    {
+      "name": "ALUMNO - Ver Notas",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/alumno/notas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "alumno",
+            "notas"
+          ]
+        }
+      }
+    },
+    {
+      "name": "PROFESOR - Ver Materias",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/profesor/materias",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "profesor",
+            "materias"
+          ]
+        }
+      }
+    },
+    {
+      "name": "PROFESOR - Actualizar Notas",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/profesor/notas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "profesor",
+            "notas"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"materiaId\": 1,\n    \"nombreMateria\": \"Matem\\u00e1tica\",\n    \"notaFinal\": 8.5\n  }\n]"
+        }
+      }
+    },
+    {
+      "name": "REGISTRO - Listar Alumnos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/registro/alumnos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "registro",
+            "alumnos"
+          ]
+        }
+      }
+    },
+    {
+      "name": "REGISTRO - Crear Alumno",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/registro/alumnos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "registro",
+            "alumnos"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombres\": \"Juan\",\n  \"apellidos\": \"Gomez\",\n  \"direccion\": \"San Salvador\",\n  \"telefono\": \"1234-5678\"\n}"
+        }
+      }
+    },
+    {
+      "name": "REGISTRO - Listar Profesores",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/registro/profesores",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "registro",
+            "profesores"
+          ]
+        }
+      }
+    },
+    {
+      "name": "REGISTRO - Crear Profesor",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/registro/profesores",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "registro",
+            "profesores"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombres\": \"Pedro\",\n  \"apellidos\": \"L\\u00f3pez\",\n  \"fechaIngreso\": \"2023-01-15\"\n}"
+        }
+      }
+    },
+    {
+      "name": "REGISTRO - Listar Materias",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/registro/materias",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "registro",
+            "materias"
+          ]
+        }
+      }
+    },
+    {
+      "name": "REGISTRO - Crear Materia",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/registro/materias",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "registro",
+            "materias"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombreMateria\": \"Ciencias Naturales\"\n}"
+        }
+      }
+    }
+  ]
+}
