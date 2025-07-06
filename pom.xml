@@ -89,6 +89,7 @@
     </dependencies>
 
     <build>
+        <finalName>key-backend-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
