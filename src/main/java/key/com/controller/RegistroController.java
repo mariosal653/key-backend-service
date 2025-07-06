@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/api/registro")
 @PreAuthorize("hasRole('REGISTRO') or hasRole('ADMIN')")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class RegistroController {
 
     private final RegistroService registroService;
