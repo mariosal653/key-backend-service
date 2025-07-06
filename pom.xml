@@ -8,7 +8,7 @@
         <version>3.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>serfinsa.com</groupId>
+    <groupId>key.com</groupId>
     <artifactId>key-backend-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>key-backend-service</name>

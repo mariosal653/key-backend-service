@@ -1,5 +1,6 @@
 package key.com.config;
 
+
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -14,13 +15,8 @@ public class FirebaseConfig {
 
     @PostConstruct
     public void init() throws IOException {
-        String serviceAccountPath = System.getenv("FIREBASE_CONFIG_PATH");
-
-        if (serviceAccountPath == null) {
-            throw new RuntimeException("FIREBASE_CONFIG_PATH no está definido.");
-        }
-
-        FileInputStream serviceAccount = new FileInputStream(serviceAccountPath);
+        FileInputStream serviceAccount =
+                new FileInputStream("src/main/resources/firebase-service-account.json");
 
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
