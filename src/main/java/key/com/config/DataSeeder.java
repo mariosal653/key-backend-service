@@ -44,7 +44,7 @@ public class DataSeeder implements CommandLineRunner {
         // === ALUMNO ===
         Alumno alumno = new Alumno();
         alumno.setNombres("Carlos");
-        alumno.setApellidos("Peñate");
+        alumno.setApellidos("Perez");
         alumno.setFechaIngreso(LocalDate.of(2023, 1, 15));
         alumno.setDireccion("San Salvador");
         alumno.setTelefono("7000-0000");

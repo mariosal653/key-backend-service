@@ -18,7 +18,10 @@ import java.util.List;
 @RequestMapping("/api/profesor")
 @PreAuthorize("hasRole('PROFESOR') or hasRole('REGISTRO') or hasRole('ADMIN')")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://key-frontend-app.onrender.com"
+}, allowCredentials = "true")
 @Slf4j
 public class ProfesorController {
 

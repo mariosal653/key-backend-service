@@ -18,7 +18,10 @@ import java.util.List;
 @PreAuthorize("hasRole('ADMIN') or hasRole('PROFESOR') or hasRole('REGISTRO')")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://key-frontend-app.onrender.com"
+}, allowCredentials = "true")
 public class RegistroController {
 
     private final RegistroService registroService;
