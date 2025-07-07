@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/profesor")
 @PreAuthorize("hasRole('PROFESOR') or hasRole('REGISTRO') or hasRole('ADMIN')")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class ProfesorController {
 
     private final ProfesorService profesorService;
