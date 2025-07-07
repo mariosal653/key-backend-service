@@ -4,6 +4,7 @@ import key.com.security.FirebaseAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -23,11 +24,13 @@ public class WebSecurityConfig  {
     public SecurityFilterChain firebaseSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .securityMatcher("/api/**")
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/public/**").permitAll()
-                        .requestMatchers("/api/profesor/**").hasRole("PROFESOR")
-                        .requestMatchers("/api/alumno/**").hasRole("ALUMNO")
-                        .requestMatchers("/api/registro/**").hasRole("REGISTRO")
+                        .requestMatchers("/api/profesor/**").hasAnyRole("REGISTRO", "ADMIN", "PROFESOR")
+                        .requestMatchers("/api/alumno/**").hasAnyRole("ALUMNO", "REGISTRO", "ADMIN", "PROFESOR")
+                        .requestMatchers("/api/registro/**").hasAnyRole("REGISTRO", "ADMIN", "PROFESOR")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(firebaseFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -35,20 +38,18 @@ public class WebSecurityConfig  {
         return http.build();
     }
 
+
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .securityMatcher("/public/**")
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/public/**").permitAll()
-                        .requestMatchers("/api/profesor/**").hasRole("PROFESOR")
-                        .requestMatchers("/api/alumno/**").hasRole("ALUMNO")
-                        .requestMatchers("/api/registro/**").hasRole("REGISTRO")
                         .anyRequest().permitAll()
                 );
 
         return http.build();
     }
+
 
 
     @Bean

@@ -29,6 +29,13 @@ public class AlumnoController {
         return ResponseEntity.ok(alumnoService.obtenerPerfil(auth.getName()));
     }
 
+    @GetMapping("/all")
+    public
+    ResponseEntity
+            <List<AlumnoDto>> getAllAlumnos(Authentication auth) {
+        return ResponseEntity.ok(alumnoService.findAll());
+    }
+
     @PutMapping("/perfil")
     public ResponseEntity<Void> actualizarPerfil(@RequestBody AlumnoDto alumnoDto, Authentication auth) {
         alumnoService.actualizarPerfil(auth.getName(), alumnoDto);
@@ -66,7 +73,7 @@ public class AlumnoController {
     }
 
     @GetMapping("/todos-con-notas")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('PROFESOR')")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<AlumnoNotasDto>> verNotasTodos() {
         List<Alumno> alumnos = alumnoRepository.findAll();
 

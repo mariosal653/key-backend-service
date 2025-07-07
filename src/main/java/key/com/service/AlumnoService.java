@@ -16,6 +16,17 @@ public class AlumnoService {
     private final AlumnoRepository alumnoRepository;
     private final AlumnoMateriaRepository alumnoMateriaRepository;
 
+    public List<AlumnoDto>  findAll() {
+        return alumnoRepository.findAll()
+                .stream()
+                .map(alumno -> {
+                    AlumnoDto dto = new AlumnoDto();
+                    dto.setNombres(alumno.getNombres());
+                    dto.setApellidos(alumno.getApellidos());
+                    dto.setEmail(alumno.getEmail());
+                    return dto;
+                }).toList();
+    }
     public AlumnoDto obtenerPerfil(String email) {
         Alumno alumno = alumnoRepository.findByEmail(email).orElseThrow();
         AlumnoDto dto = new AlumnoDto();

@@ -48,6 +48,7 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
                 String role = roleObj.toString();
 
                 GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
+                log.info("Usuario autenticado: {}, Rol: {}", email, role);
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(email, null, Collections.singletonList(authority));
 

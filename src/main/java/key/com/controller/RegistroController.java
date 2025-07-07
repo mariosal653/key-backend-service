@@ -56,6 +56,7 @@ public class RegistroController {
     }
 
     @PostMapping("/materias")
+    @PreAuthorize("hasAnyRole('ADMIN', 'PROFESOR', 'REGISTRO')")
     public void crearMateria(@RequestBody MateriaDto dto) {
         registroService.crearMateria(dto);
     }

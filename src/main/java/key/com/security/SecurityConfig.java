@@ -19,9 +19,9 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/public/**").permitAll()
-                        .requestMatchers("/api/profesor/**").hasRole("PROFESOR")
-                        .requestMatchers("/api/alumno/**").hasRole("ALUMNO")
-                        .requestMatchers("/api/registro/**").hasRole("REGISTRO")
+                        .requestMatchers("/api/profesor/**").hasAnyRole( "REGISTRO", "ADMIN", "PROFESOR")
+                        .requestMatchers("/api/alumno/**").hasAnyRole("ALUMNO", "REGISTRO", "ADMIN", "PROFESOR")
+                        .requestMatchers("/api/registro/**").hasAnyRole( "REGISTRO", "ADMIN", "PROFESOR")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -29,4 +29,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }
